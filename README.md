@@ -6,7 +6,7 @@
 ![Language](https://img.shields.io/badge/language-C++-blue.svg?style=flat-square)
 ![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
 
-<br>
+<br/>
 This is a cpp implementation of popular python library [imutils](https://github.com/PyImageSearch/imutils)
 
 ## Installation
