@@ -4,7 +4,8 @@
 ![Version](https://img.shields.io/badge/version-1.0.1-green.svg?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat-square)
 ![Language](https://img.shields.io/badge/language-C++-blue.svg?style=flat-square)
-![Build](https://github.com/thedevmanek/imutils-cpp/workflows/doxygen-gh-pages.yml/badge.svg)
+[![Doxygen Action](https://github.com/thedevmanek/imutils-cpp/actions/workflows/doxygen-gh-pages.yml/badge.svg)](https://github.com/thedevmanek/imutils-cpp/actions/workflows/doxygen-gh-pages.yml)
+[![pages-build-deployment](https://github.com/thedevmanek/imutils-cpp/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/thedevmanek/imutils-cpp/actions/workflows/pages/pages-build-deployment)
 <br/>
 This is a cpp implementation of popular python library [imutils](https://github.com/PyImageSearch/imutils)
 
