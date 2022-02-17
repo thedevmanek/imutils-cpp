@@ -4,8 +4,7 @@
 ![Version](https://img.shields.io/badge/version-1.0.1-green.svg?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat-square)
 ![Language](https://img.shields.io/badge/language-C++-blue.svg?style=flat-square)
-![example workflow](https://github.com/github/docs/actions/workflows/doxygen-gh-pages.yml/badge.svg)
-
+![Build](https://github.com/thedevmanek/imutils-cpp/workflows/doxygen-gh-pages.yml/badge.svg)
 <br/>
 This is a cpp implementation of popular python library [imutils](https://github.com/PyImageSearch/imutils)
 
