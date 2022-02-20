@@ -68,66 +68,27 @@ $(function() {
 <div class="textblock"><p ><a class="anchor" id="md_README"></a></p>
 <p ><img src="https://img.shields.io/badge/version-1.0.1-green.svg?style=flat-square" alt="Version" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/license-MIT-yellow.svg?style=flat-square" alt="License" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/language-C++-blue.svg?style=flat-square" alt="Language" style="pointer-events: none;" class="inline"/> <a href="https://github.com/thedevmanek/imutils-cpp/actions/workflows/doxygen-gh-pages.yml"><img src="https://github.com/thedevmanek/imutils-cpp/actions/workflows/doxygen-gh-pages.yml/badge.svg?style=flat-square" alt="Doxygen Action" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/thedevmanek/imutils-cpp/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/thedevmanek/imutils-cpp/actions/workflows/pages/pages-build-deployment/badge.svg?style=flat-square" alt="pages-build-deployment" style="pointer-events: none;" class="inline"/></a> <br  />
  This is a cpp implementation of popular python library <a href="https://github.com/PyImageSearch/imutils">imutils</a></p>
+<p >You can find installation instructions here</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Installation</h1>
-<p >This library is dependent on <a href="https://github.com/opencv/opencv">opencv</a> and <a href="https://github.com/curl/curl">curl</a> libraries</p>
-<h2><a class="anchor" id="autotoc_md2"></a>
-Dynamic Library for local use</h2>
-<pre> 
-$ cp /home/usr/Download/libimutils_cpp.so /home/usr/lib
-</pre><p> or </p><pre> 
-$ cp /usr/Download/libimutils_cpp.so.1.0.1 /usr/lib
-$ ldconfig -n -v /usr/lib
-</pre><p >#</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Static Library</h1>
-<p >Just install the .a file in the lib dir or the root dir of the project</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
-Usage</h1>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Dynamic Library</h2>
-<pre>
-g++ -Wall -L/opt/lib main.cpp -limutils_cpp
-</pre><p >#</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
-Static Library</h1>
-<pre>
-$ g++ main.cpp libfoo.a
-</pre><p> or </p><pre>
-$ g++ -L. -lfoo prog.cpp libfoo.a
-</pre><p >#</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
-CMAKE</h1>
-<h3><a class="anchor" id="autotoc_md8"></a>
-Dynamic</h3>
-<pre>
-target_link_libraries(imutils_cpp ${OpenCV_LIBS} curl)
-</pre><p >#</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
-Static</h2>
-<pre>
-target_link_libraries(main ${CMAKE_SOURCE_DIR}/libimutils_cpp.a)
-</pre><p >#</p>
-<h1><a class="anchor" id="autotoc_md10"></a>
 Translation</h1>
 <p >Translation is the shifting of an image in either the <em>x</em> or <em>y</em> direction. To translate an image in OpenCV you would need to supply the *(x, y)*-shift, denoted as *(t<sub>x</sub>, t<sub>y</sub>)* to construct the translation matrix <em>M</em>:</p>
 <p ><img src="docs/images/translation_eq.png?raw=true" alt="Translation equation" class="inline"/></p>
 <p >And from there, you would need to apply the <code>cv::warpAffine</code> function.</p>
 <p >Instead of manually constructing the translation matrix <em>M</em> and calling <code>cv2::warpAffine</code>, you can simply make a call to the <code>translate</code> function of <code>imutils</code>.</p>
-<h4><a class="anchor" id="autotoc_md11"></a>
-Example:</h4>
+<h3><a class="anchor" id="autotoc_md2"></a>
+Example:</h3>
 <pre>
  // translate the image x=25 pixels to the right and y=75 pixels up
  cv::Mat translated =<a class="el" href="classConvenience.html#a4c6c73490d710c51f2c2fd09c214cc56" title="Returns translated image.">Convenience::translate</a>(image,25,-75);
 </pre><p >#</p>
-<h3><a class="anchor" id="autotoc_md12"></a>
-Output:</h3>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Output:</h2>
 <p ><img src="docs/images/translation.png" alt="Translation example" style="max-width: 500px;" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md13"></a>
-Rotation</h2>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Rotation</h1>
 <p >Rotating an image in OpenCV is accomplished by making a call to <code>cv2::getRotationMatrix2D</code> and <code>cv2::warpAffine</code>. Further care has to be taken to supply the *(x, y)*-coordinate of the point the image is to be rotated about. These calculation calls can quickly add up and make your code bulky and less readable. The <code>rotate</code> function in <code>imutils</code> helps resolve this problem.</p>
-<h4><a class="anchor" id="autotoc_md14"></a>
-Example:</h4>
+<h3><a class="anchor" id="autotoc_md5"></a>
+Example:</h3>
 <pre>
 // loop over the angles to rotate the image
     int arr[]={0,90,270,360};
@@ -137,12 +98,12 @@ Example:</h4>
         windowname+=std::to_string(i);
         cv::imshow(windowname,rotated);
     }</pre><p> <img src="docs/images/rotation.png" alt="Rotation example" style="max-width: 500px;" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md15"></a>
-Resizing</h2>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Resizing</h1>
 <p >Resizing an image in OpenCV is accomplished by calling the <code>cv::resize</code> function. However, special care needs to be taken to ensure that the aspect ratio is maintained. This <code>resize</code> function of <code>imutils</code> maintains the aspect ratio and provides the keyword arguments <code>width</code> and <code>height</code> so the image can be resized to the intended width/height while (1) maintaining aspect ratio and (2) ensuring the dimensions of the image do not have to be explicitly computed by the developer.</p>
 <p >Another optional keyword argument, <code>inter</code>, can be used to specify interpolation method as well.</p>
-<h4><a class="anchor" id="autotoc_md16"></a>
-Example:</h4>
+<h3><a class="anchor" id="autotoc_md7"></a>
+Example:</h3>
 <pre>
 // loop over varying widths to resize the image to
 int arr[]={400,300,200,100};
@@ -152,69 +113,69 @@ int arr[]={400,300,200,100};
         windowname+=std::to_string(i);
         cv::imshow(windowname,resized);
     }</pre><p> <img src="docs/images/resizing.png" alt="Resizing example" style="max-width: 500px;" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md17"></a>
-Skeletonization</h2>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Skeletonization</h1>
 <p >Skeletonization is the process of constructing the "topological skeleton" of an object in an image, where the object is presumed to be white on a black background. OpenCV does not provide a function to explicitly construct the skeleton, but does provide the morphological and binary functions to do so.</p>
 <p >For convenience, the <code>skeletonize</code> function of <code>imutils</code> can be used to construct the topological skeleton of the image.</p>
 <p >The first argument, <code>size</code> is the size of the structuring element kernel. An optional argument, <code>structuring</code>, can be used to control the structuring element &ndash; it defaults to <code>cv::MORPH_RECT</code> , but can be any valid structuring element.</p>
-<h4><a class="anchor" id="autotoc_md18"></a>
-Example:</h4>
+<h3><a class="anchor" id="autotoc_md9"></a>
+Example:</h3>
 <pre>
 // skeletonize the image
 cv::Mat img = cv::Mat::zeros({500,100}, CV_32F);
 cv::putText(img,"thedevmanek",{5,70},cv::FONT_HERSHEY_COMPLEX,2,{255},5,cv::LINE_AA);
 cv::Mat img_copy = img.clone();
 cv::Mat skeletonized = <a class="el" href="classConvenience.html#a3e3825ee157a8e158360ac4469ad1b5f" title="Returns skeleton image.">Convenience::skeletonize</a>(img,{3,3},cv::MORPH_ELLIPSE);</pre><p >#</p>
-<h3><a class="anchor" id="autotoc_md19"></a>
-Output:</h3>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Output:</h2>
 <p ><img src="docs/images/skeletonization.png" alt="Skeletonization example" style="max-width: 500px;" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md20"></a>
-URL to Image</h2>
+<h1><a class="anchor" id="autotoc_md11"></a>
+URL to Image</h1>
 <p >This the <code>url_to_image</code> function accepts a single parameter: the <code>url</code> of the image we want to download and convert to <code>cv::Mat</code> in OpenCV format.</p>
-<h4><a class="anchor" id="autotoc_md21"></a>
-Example:</h4>
+<h3><a class="anchor" id="autotoc_md12"></a>
+Example:</h3>
 <pre>std::string url="https://opencv.org/wp-content/uploads/2020/07/cropped-OpenCV_logo_white_600x.png";
 cv::Mat logo = Convenience::urlToImager(url);
 cv::imshow("urlImage",logo);</pre><p >#</p>
-<h3><a class="anchor" id="autotoc_md22"></a>
-Output:</h3>
+<h2><a class="anchor" id="autotoc_md13"></a>
+Output:</h2>
 <p ><img src="docs/images/url_to_image.png" alt="URL to image Example" style="max-width: 500px;" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md23"></a>
-Automatic Canny Edge Detection</h2>
+<h1><a class="anchor" id="autotoc_md14"></a>
+Automatic Canny Edge Detection</h1>
 <p >The Canny edge detector requires two parameters when performing hysteresis. However, tuning these two parameters to obtain an optimal edge map is non-trivial, especially when working with a dataset of images. Instead, we can use the <code>autoCanny</code> function which uses the median of the grayscale pixel intensities to derive the upper and lower thresholds.</p>
-<h4><a class="anchor" id="autotoc_md24"></a>
-Example:</h4>
+<h3><a class="anchor" id="autotoc_md15"></a>
+Example:</h3>
 <pre>
    cv::Mat autoCanny = Convenience::autoCanny(image);
    cv::imshow("Auto Canny",autoCanny);</pre><p >#</p>
-<h3><a class="anchor" id="autotoc_md25"></a>
-Output:</h3>
+<h2><a class="anchor" id="autotoc_md16"></a>
+Output:</h2>
 <p ><img src="docs/images/auto_canny.png" alt="Matplotlib example" style="max-width: 500px;" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md26"></a>
-4-point Perspective Transform</h2>
+<h1><a class="anchor" id="autotoc_md17"></a>
+4-point Perspective Transform</h1>
 <p >A common task in computer vision and image processing is to perform a 4-point perspective transform of a ROI in an image and obtain a top-down, "birds eye view" of the ROI. The <code>perspective</code> module takes care of this for you.</p>
-<h4><a class="anchor" id="autotoc_md27"></a>
-Example</h4>
+<h3><a class="anchor" id="autotoc_md18"></a>
+Example</h3>
 <pre>
     cv::Mat fourPointTransformed = <a class="el" href="classPerspective.html#adad4cbafa9afd96d3d7df0edf4fd4776" title="Applying four point transformation to the image.">Perspective::fourPointTransformation</a>(image,{{73, 239},{356, 117}, {475, 265}, {187, 443}});
     cv::imshow("image",image);
     cv::imshow("Transformed Image",fourPointTransformed);
 </pre><p >#</p>
-<h3><a class="anchor" id="autotoc_md28"></a>
-Output:</h3>
+<h2><a class="anchor" id="autotoc_md19"></a>
+Output:</h2>
 <p ><img src="docs/images/perspective_transform.png" alt="Matplotlib example" style="max-width: 500px;" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md29"></a>
-(Recursively) Listing Paths to Images</h2>
+<h1><a class="anchor" id="autotoc_md20"></a>
+(Recursively) Listing Paths to Images</h1>
 <p >The <code>paths</code> sub-module of <code>imutils</code> includes a function to recursively find images based on a root directory.</p>
-<h4><a class="anchor" id="autotoc_md30"></a>
-Example:</h4>
+<h3><a class="anchor" id="autotoc_md21"></a>
+Example:</h3>
 <p >Assuming we are in the <code>demos</code> directory, let's list the contents of the <code>../demo_images</code>:</p>
 <div class="fragment"><div class="line">Path path;</div>
 <div class="line">std::vector&lt;std::string&gt; dirs= path.listImages(&quot;../demo_images&quot;);</div>
 <div class="line">for(std::string file:dirs){</div>
 <div class="line">    std::cout&lt;&lt;file&lt;&lt;std::endl;</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md31"></a>
-Output:</h4>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md22"></a>
+Output:</h3>
 <pre>../demo_images/opencv-logo.png
 ../demo_images/cactus.jpg
 ../demo_images/shapes.png
@@ -223,6 +184,46 @@ Output:</h4>
 ../demo_images/workspace.jpg
 ../demo_images/elephant.jpeg
 ../demo_images/notecard.png
+</pre><p ><a class="anchor" id="Installation"></a></p>
+<h1><a class="anchor" id="autotoc_md23"></a>
+Installation</h1>
+<p >This library is dependent on <a href="https://github.com/opencv/opencv">opencv</a> and <a href="https://github.com/curl/curl">curl</a> libraries</p>
+<h2><a class="anchor" id="autotoc_md24"></a>
+Dynamic Library for local use</h2>
+<pre> 
+$ cp /home/usr/Download/libimutils_cpp.so /home/usr/lib
+</pre><p> or </p><pre> 
+$ cp /usr/Download/libimutils_cpp.so.1.0.1 /usr/lib
+$ ldconfig -n -v /usr/lib
+</pre><p >#</p>
+<h1><a class="anchor" id="autotoc_md25"></a>
+Static Library</h1>
+<p >Just install the .a file in the lib dir or the root dir of the project</p>
+<h1><a class="anchor" id="autotoc_md26"></a>
+Usage</h1>
+<h2><a class="anchor" id="autotoc_md27"></a>
+Dynamic Library</h2>
+<pre>
+g++ -Wall -L/opt/lib main.cpp -limutils_cpp
+</pre><p >#</p>
+<h1><a class="anchor" id="autotoc_md28"></a>
+Static Library</h1>
+<pre>
+$ g++ main.cpp libfoo.a
+</pre><p> or </p><pre>
+$ g++ -L. -lfoo prog.cpp libfoo.a
+</pre><p >#</p>
+<h1><a class="anchor" id="autotoc_md29"></a>
+CMAKE</h1>
+<h3><a class="anchor" id="autotoc_md30"></a>
+Dynamic</h3>
+<pre>
+target_link_libraries(imutils_cpp ${OpenCV_LIBS} curl)
+</pre><p >#</p>
+<h2><a class="anchor" id="autotoc_md31"></a>
+Static</h2>
+<pre>
+target_link_libraries(main ${CMAKE_SOURCE_DIR}/libimutils_cpp.a)
 </pre> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
