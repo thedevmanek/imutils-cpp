@@ -9,57 +9,7 @@
 <br/>
 This is a cpp implementation of popular python library [imutils](https://github.com/PyImageSearch/imutils)
 
-## Installation
-
-This library is dependent on [opencv](https://github.com/opencv/opencv) and [curl](https://github.com/curl/curl)
-libraries
-
-### Dynamic Library for local use
-
-<pre> 
-$ cp /home/usr/Download/libimutils_cpp.so /home/usr/lib
-</pre>
-or
-<pre> 
-$ cp /usr/Download/libimutils_cpp.so.1.0.1 /usr/lib
-$ ldconfig -n -v /usr/lib
-</pre>
-
-### Static Library
-
-Just install the .a file in the lib dir or the root dir of the project
-
-## Usage
-
-### Dynamic Library
-
-<pre>
-g++ -Wall -L/opt/lib main.cpp -limutils_cpp
-</pre>
-
-### Static Library
-
-<pre>
-$ g++ main.cpp libfoo.a
-</pre>
-or
-<pre>
-$ g++ -L. -lfoo prog.cpp libfoo.a
-</pre>
-
-## CMAKE
-
-### Dynamic
-
-<pre>
-target_link_libraries(imutils_cpp ${OpenCV_LIBS} curl)
-</pre>
-
-### Static
-
-<pre>
-target_link_libraries(main ${CMAKE_SOURCE_DIR}/libimutils_cpp.a)
-</pre>
+You can find installation instructions [here](#Installation)
 
 ## Translation
 Translation is the shifting of an image in either the *x* or *y* direction. To translate an image in OpenCV you would need to supply the *(x, y)*-shift, denoted as *(t<sub>x</sub>, t<sub>y</sub>)* to construct the translation matrix *M*:
@@ -193,4 +143,60 @@ for(std::string file:dirs){
 ../demo_images/workspace.jpg
 ../demo_images/elephant.jpeg
 ../demo_images/notecard.png
+</pre>
+
+<a name="Installation">
+ 
+## Installation
+
+</a>
+
+This library is dependent on [opencv](https://github.com/opencv/opencv) and [curl](https://github.com/curl/curl)
+libraries
+
+### Dynamic Library for local use
+
+<pre> 
+$ cp /home/usr/Download/libimutils_cpp.so /home/usr/lib
+</pre>
+or
+<pre> 
+$ cp /usr/Download/libimutils_cpp.so.1.0.1 /usr/lib
+$ ldconfig -n -v /usr/lib
+</pre>
+
+### Static Library
+
+Just install the .a file in the lib dir or the root dir of the project
+
+## Usage
+
+### Dynamic Library
+
+<pre>
+g++ -Wall -L/opt/lib main.cpp -limutils_cpp
+</pre>
+
+### Static Library
+
+<pre>
+$ g++ main.cpp libfoo.a
+</pre>
+or
+<pre>
+$ g++ -L. -lfoo prog.cpp libfoo.a
+</pre>
+
+## CMAKE
+
+### Dynamic
+
+<pre>
+target_link_libraries(imutils_cpp ${OpenCV_LIBS} curl)
+</pre>
+
+### Static
+
+<pre>
+target_link_libraries(main ${CMAKE_SOURCE_DIR}/libimutils_cpp.a)
 </pre>
