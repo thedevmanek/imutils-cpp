@@ -146,7 +146,7 @@ for(std::string file:dirs){
 </pre>
 
 <a name="Installation">
- 
+
 ## Installation
 
 </a>
@@ -154,13 +154,23 @@ for(std::string file:dirs){
 This library is dependent on [opencv](https://github.com/opencv/opencv) and [curl](https://github.com/curl/curl)
 libraries
 
+### Build from source and install in your system
+
+<pre>
+$ cd imutils-cpp/
+$ mkdir build && cd build/
+$ cmake .. -DCMAKE_VERBOSE_MAKEFILE=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+$ cmake --build .
+$ sudo cmake --build . --target install
+</pre>
+
 ### Dynamic Library for local use
 
-<pre> 
+<pre>
 $ cp /home/usr/Download/libimutils_cpp.so /home/usr/lib
 </pre>
 or
-<pre> 
+<pre>
 $ cp /usr/Download/libimutils_cpp.so.1.0.1 /usr/lib
 $ ldconfig -n -v /usr/lib
 </pre>
